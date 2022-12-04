@@ -31,5 +31,5 @@ The library is written in C language and thus needs the **`gcc` compiler** and s
 ### Instructions
 
 ```shell
-git clone https://github.com/joao-per/Libft.git
+git clone https://github.com/joao-per/Push_Swap
 ```

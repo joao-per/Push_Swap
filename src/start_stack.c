@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_stack.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joao-per <joao-per@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joao-per <joao-per@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 10:35:32 by joao-per          #+#    #+#             */
-/*   Updated: 2022/11/27 17:29:16 by joao-per         ###   ########.fr       */
+/*   Updated: 2022/12/05 12:10:13 by joao-per         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_stack	*fill_stack_values(int ac, char **av)
 	i = 1;
 	while (i < ac)
 	{
-		nb = ft_atoi(av[i]);
+		nb = ft_atol(av[i]);
 		if (nb > INT_MAX || nb < INT_MIN)
 			exit_error(&stack_a, NULL);
 		if (i == 1)

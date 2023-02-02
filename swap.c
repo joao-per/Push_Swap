@@ -27,7 +27,9 @@ void	do_swap(t_stack **stack_a, t_stack **stack_b, char *op)
 		ft_putstr("sb\n");
 	}
 	if (ft_strcmp(op, "ss") == 0)
+	{
 		swap(*stack_a);
 		swap(*stack_b);
 		ft_putstr("ss\n");
+	}
 }

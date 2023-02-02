@@ -12,4 +12,13 @@ typedef struct s_stack
 	int				value;
 }	t_stack;
 
+/*				CHECKER				*/
+static int	check_nb(char *nb);
+static int	check_dup(char **nb);
+static int	check_zero(char *nb);
+int			check_input(char **nb);
+
+/*				UTILS				*/
+int	is_digit(char c);
+
 #endif

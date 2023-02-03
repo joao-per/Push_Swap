@@ -19,6 +19,6 @@ static int	check_zero(char *nb);
 int			check_input(char **nb);
 
 /*				UTILS				*/
-int	is_digit(char c);
+int			is_digit(char c);
 
 #endif

@@ -12,11 +12,11 @@
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+int	ft_atol(const char *str)
 {
-	int	i;
-	int	negative;
-	int	result;
+	long int	result;
+	int			i;
+	int			negative;
 
 	i = 0;
 	negative = 1;
@@ -34,5 +34,7 @@ int	ft_atoi(const char *str)
 		result = (str[i] - 48) + (result * 10);
 		i++;
 	}
+	if (result > INT_MAX || result < -2147483648)
+		return (6969696969);
 	return (result * negative);
 }

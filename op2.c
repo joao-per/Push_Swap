@@ -4,15 +4,15 @@ static void	rotate(t_stack **stack)
 {
 	t_stack	*head;
 	t_stack	*second;
-	t_stack	*tail;
+	t_stack	*last;
 
 	head = stack;
 	second = (*stack)->next;
-	tail = get_bottom_value(*stack);
+	last = get_bottom_value(*stack);
 	if (*stack == NULL || (*stack)->next == NULL)
 		return ;
 	head->next = NULL;
-	tail->next = head;
+	last->next = head;
 	*stack = second;
 }
 
@@ -39,14 +39,14 @@ void	do_rotate(t_stack **stack_a, t_stack **stack_b, char *op)
 static void rrotate(t_stack **stack)
 {
 	t_stack *head = *stack;
-	t_stack *before_tail = get_penultimo_value(*stack);
-	t_stack *tail = get_bottom_value(*stack);
+	t_stack *before_last = get_penultimo_value(*stack);
+	t_stack *last = get_bottom_value(*stack);
 
 	if (*stack == NULL || (*stack)->next == NULL)
 		return;
-	before_tail->next = NULL;
-	tail->next = head;
-	*stack = tail;
+	before_last->next = NULL;
+	last->next = head;
+	*stack = last;
 }
 
 void	do_rrotate(t_stack **stack_a, t_stack **stack_b, char *op)

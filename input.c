@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-static int	check_nb(char *nb)
+int	check_ifnb(char *nb)
 {
 	int	i;
 
@@ -14,7 +14,7 @@ static int	check_nb(char *nb)
 	return (1);
 }
 
-static int	check_dup(char **nb)
+int	check_dup(char **nb)
 {
 	int	i;
 	int j;
@@ -25,7 +25,7 @@ static int	check_dup(char **nb)
 		j = 1;
 		while(nb[j])
 		{
-			if (nbr_cmp(nb[i], nb[j]) == 0 && j != i)
+			if (ft_atol(nb[i]) == ft_atol(nb[j]))
 				return (1);
 			j++;
 		}
@@ -34,7 +34,7 @@ static int	check_dup(char **nb)
 	return (0);
 }
 
-static int	check_zero(char *av)
+int	check_zero(char *av)
 {
 	int	i;
 
@@ -57,12 +57,12 @@ int	check_input(char **av)
 	i = 1;
 	while (av[i])
 	{
-		if (!check_nb(av[i]))
+		if (!check_ifnb(av[i]))
 			return (0);
 		only_zero += check_zero(av[i]);
 		i++;
 	}
-	if (only_zero> 1)
+	if (only_zero > 1)
 		return (0);
 	if (check_dup(av))
 		return (0);

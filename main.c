@@ -4,7 +4,7 @@ int	main(int ac, char **av)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	int		stack_size;
+	int		size;
 
 	if (ac < 2)
 		return (0);

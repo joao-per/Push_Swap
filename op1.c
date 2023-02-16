@@ -31,9 +31,9 @@ void	swap(t_stack *stack)
 
 	if (stack == NULL || stack->next == NULL)
 		return ;
-	temp = stack->value;
-	stack->value = stack->next->value;
-	stack->next->value = temp;
+	temp = stack->number;
+	stack->number = stack->next->number;
+	stack->next->number = temp;
 	temp = stack->index;
 	stack->index = stack->next->index;
 	stack->next->index = temp;

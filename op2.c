@@ -8,7 +8,7 @@ static void	rotate(t_stack **stack)
 
 	head = stack;
 	second = (*stack)->next;
-	last = get_bottom_value(*stack);
+	last = get_bottom_nb(*stack);
 	if (*stack == NULL || (*stack)->next == NULL)
 		return ;
 	head->next = NULL;
@@ -39,8 +39,8 @@ void	do_rotate(t_stack **stack_a, t_stack **stack_b, char *op)
 static void rrotate(t_stack **stack)
 {
 	t_stack *head = *stack;
-	t_stack *before_last = get_penultimo_value(*stack);
-	t_stack *last = get_bottom_value(*stack);
+	t_stack *before_last = get_penultimo_nb(*stack);
+	t_stack *last = get_bottom_nb(*stack);
 
 	if (*stack == NULL || (*stack)->next == NULL)
 		return;

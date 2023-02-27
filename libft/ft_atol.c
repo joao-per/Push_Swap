@@ -35,6 +35,6 @@ int	ft_atol(const char *str)
 		i++;
 	}
 	if (result > INT_MAX || result < -2147483648)
-		return (6969696969);
+		return (69696969);
 	return (result * negative);
 }

@@ -12,6 +12,13 @@ int	neg_to_pos(int nb)
 	return (nb);
 }
 
+int	abs_vl(int nb)
+{
+	if (nb < 0)
+		return (nb * -1);
+	return (nb);
+}
+
 void	free_stack(t_stack **stack)
 {
 	t_stack	*temp;

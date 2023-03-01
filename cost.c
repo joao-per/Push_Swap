@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cost.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joao-per <joao-per@student.42lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/01 17:24:07 by joao-per          #+#    #+#             */
+/*   Updated: 2023/03/01 17:24:07 by joao-per         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	get_cost(t_stack **stack_a, t_stack **stack_b)
@@ -34,9 +46,9 @@ void	do_cheapest_move(t_stack **stack_a, t_stack **stack_b)
 	cheapest = INT_MAX;
 	while (temp)
 	{
-		if (abs_vl(temp->cost_a) + abs_vl(temp->cost_b) < abs_vl(cheapest))
+		if (neg_to_pos(temp->cost_a) + neg_to_pos(temp->cost_b) < neg_to_pos(cheapest))
 		{
-			cheapest = abs_vl(temp->cost_b) + abs_vl(temp->cost_a);
+			cheapest = neg_to_pos(temp->cost_b) + neg_to_pos(temp->cost_a);
 			cost_a = temp->cost_a;
 			cost_b = temp->cost_b;
 		}
@@ -45,27 +57,27 @@ void	do_cheapest_move(t_stack **stack_a, t_stack **stack_b)
 	align_stack(stack_a, stack_b, cost_a, cost_b);
 }
 
-void	align_stack(t_stack **a, t_stack **b, int *cost_a, int *cost_b)
+void	align_stack(t_stack **a, t_stack **b, int cost_a, int cost_b)
 {
-	if (cost_a > 0 && cost_b > 0 || cost_a < 0 && cost_b < 0 )
+	if (cost_a > 0 && cost_b > 0 || cost_a < 0 && cost_b < 0)
 	{
-		while ((*cost_a)-- > 0 && (*cost_b)-- > 0)
-			do_rr(a, b);
-		while ((*cost_a)++ < 0 && (*cost_b)++ < 0)
-			do_rrr(a, b);
+		while (cost_a-- > 0 && cost_b-- > 0)
+			do_rotate(a, b, "rr");
+		while (cost_a++ < 0 && cost_b++ < 0)
+			do_rrotate(a, b, "rrr");
 	}
-	while (*cost_a)
+	while (cost_a)
 	{
-		if ((*cost_a)-- > 0)
+		if (cost_a > 0 && cost_a--)
 			do_rotate(a, b, "ra");
-		else if ((*cost_a++) < 0)
+		else if (cost_a < 0 && cost_a++)
 			do_rrotate(a, b, "rra");
 	}
-	while (*cost_b)
+	while (cost_b)
 	{
-		if ((*cost_b)-- > 0)
+		if (cost_b > 0 && cost_b--)
 			do_rotate(a, b, "rb");
-		else if ((*cost_b)++ < 0)
+		else if (cost_b < 0 && cost_b++)
 			do_rrotate(a, b, "rrb");
 	}
 	do_push(a, b, "pa");

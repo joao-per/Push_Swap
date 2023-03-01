@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sorts.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joao-per <joao-per@student.42lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/01 17:25:22 by joao-per          #+#    #+#             */
+/*   Updated: 2023/03/01 17:25:22 by joao-per         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	sort_three(t_stack **stack_a, t_stack **stack_b)
@@ -38,7 +50,7 @@ static void	push_all_save_three(t_stack **stack_a, t_stack **stack_b)
 	i = -1;
 	while (size_a > 6 && ++i < size_a && size_b < size_a / 2)
 	{
-		if ((*stack_a)->index <= size_a/ 2)
+		if ((*stack_a)->index <= size_a / 2)
 		{
 			do_push(stack_a, stack_b, "pb");
 			size_b++;
@@ -50,14 +62,6 @@ static void	push_all_save_three(t_stack **stack_a, t_stack **stack_b)
 		do_push(stack_a, stack_b, "pb");
 }
 
-/*  ---------------
-*    SHIFT_STACK
-*	---------------
-*	Depois que a maior parte da stack é ordenada,
-*	desloca a stack A até que o valor menor esteja no topo.
-*	Se estiver na metade inferior da stack, dá reverese rotate, 
-*	caso contrário, dá rotate até que esteja no topo da stack.
-*/
 static void	shift_stack(t_stack **stack_a, t_stack **stack_b)
 {
 	int	lowest_pos;
@@ -76,8 +80,6 @@ static void	shift_stack(t_stack **stack_a, t_stack **stack_b)
 			do_rrotate(stack_a, stack_b, "rra");
 	}
 }
-
-
 
 void	sort(t_stack **stack_a, t_stack **stack_b)
 {

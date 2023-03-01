@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joao-per <joao-per@student.42lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/01 17:25:00 by joao-per          #+#    #+#             */
+/*   Updated: 2023/03/01 17:25:00 by joao-per         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_stack	*fill_stack_nbs(int ac, char **av)
@@ -11,7 +23,7 @@ t_stack	*fill_stack_nbs(int ac, char **av)
 	i = 1;
 	while (i < ac)
 	{
-		nb = ft_atoi(av[i]);
+		nb = ft_atol(av[i]);
 		if (nb > INT_MAX || nb < INT_MIN)
 			freexit(&stack_a, NULL);
 		if (i == 1)
@@ -23,17 +35,42 @@ t_stack	*fill_stack_nbs(int ac, char **av)
 	return (stack_a);
 }
 
+int	sort_checker(t_stack *stack)
+{
+	while (stack->next != NULL)
+	{
+		if (stack->number > stack->next->number)
+			return (0);
+		stack = stack->next;
+	}
+	return (1);
+}
+
 static void	sorts(t_stack **stack_a, t_stack **stack_b, int size)
 {
-	if(!sort_checker(*stack_a))
+	set_index(*stack_a, size + 1);
+	if (!sort_checker(*stack_a))
 	{
 		if (size == 2)
-			do_sa(stack_a);
+			do_swap(stack_a, stack_b, "sa");
 		else if (size == 3)
 			sort_three(stack_a, stack_b);
 		else
 			sort(stack_a, stack_b);
 	}
+}
+
+void	printstack(t_stack **stack_a)
+{
+	t_stack	*head;
+
+	head = *stack_a;
+	while (head)
+	{
+		printf("%d\n", head->number);
+		head = head->next;
+	}
+
 }
 
 int	main(int ac, char **av)
@@ -46,6 +83,11 @@ int	main(int ac, char **av)
 		return (0);
 	if (!check_input(av))
 		freexit(NULL, NULL);
+	stack_a = fill_stack_nbs(ac, av);
+	stack_b = NULL;
+	size = get_stack_size(stack_a);
+	sorts(&stack_a, &stack_b, size);
+	printstack(&stack_a);
 	free_stack(&stack_a);
 	free_stack(&stack_b);
 	return (0);

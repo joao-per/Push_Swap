@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: joao-per <joao-per@student.42.fr>          +#+  +:+       +#+         #
+#    By: joao-per <joao-per@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 13:39:37 by joao-per          #+#    #+#              #
-#    Updated: 2023/02/21 23:15:32 by joao-per         ###   ########.fr        #
+#    Updated: 2023/03/01 17:07:30 by joao-per         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME		= push_swap
 LIBFT		= libft
 CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -g
 RM			= rm -f
 
 # Cores
@@ -23,6 +23,7 @@ RM			= rm -f
 DEFAULT = \033[0;39m
 GRAY = \033[0;90m
 RED = \033[0;91m
+
 GREEN = \033[0;92m
 YELLOW = \033[0;93m
 BLUE = \033[0;94m
@@ -32,7 +33,7 @@ WHITE = \033[0;97m
 
 #Sources
 
-SRC_FILES	=	index_and_pos.c input.c main.c op1.c op2.c sorts.c stacks.c utils.c
+SRC_FILES	=	index_and_pos.c input.c main.c op1.c op2.c sorts.c stacks.c utils.c cost.c
 
 
 OBJ		= $(SRC_FILES:.c=.o)

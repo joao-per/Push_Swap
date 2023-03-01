@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   op2.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joao-per <joao-per@student.42lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/01 17:24:01 by joao-per          #+#    #+#             */
+/*   Updated: 2023/03/01 17:24:01 by joao-per         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static void	rotate(t_stack **stack)
@@ -6,7 +18,7 @@ static void	rotate(t_stack **stack)
 	t_stack	*second;
 	t_stack	*last;
 
-	head = stack;
+	head = *stack;
 	second = (*stack)->next;
 	last = get_bottom_nb(*stack);
 	if (*stack == NULL || (*stack)->next == NULL)
@@ -36,14 +48,17 @@ void	do_rotate(t_stack **stack_a, t_stack **stack_b, char *op)
 	}
 }
 
-static void rrotate(t_stack **stack)
+static void	rrotate(t_stack **stack)
 {
-	t_stack *head = *stack;
-	t_stack *before_last = get_penultimo_nb(*stack);
-	t_stack *last = get_bottom_nb(*stack);
+	t_stack	*head;
+	t_stack	*before_last;
+	t_stack	*last;
 
+	head = *stack;
+	before_last = get_penultimo_nb(*stack);
+	last = get_bottom_nb(*stack);
 	if (*stack == NULL || (*stack)->next == NULL)
-		return;
+		return ;
 	before_last->next = NULL;
 	last->next = head;
 	*stack = last;
@@ -53,7 +68,7 @@ void	do_rrotate(t_stack **stack_a, t_stack **stack_b, char *op)
 {
 	if (ft_strcmp(op, "rra") == 0)
 	{
-		rrotate(stack_a);	
+		rrotate(stack_a);
 		ft_putstr("rra\n");
 	}
 	else if (ft_strcmp(op, "rrb") == 0)

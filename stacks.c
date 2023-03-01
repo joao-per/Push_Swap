@@ -1,13 +1,13 @@
 #include "push_swap.h"
 
-t_stack	*get_bottom_value(t_stack *stack)
+t_stack	*get_bottom_nb(t_stack *stack)
 {
 	while (stack && stack->next != NULL)
 		stack = stack->next;
 	return (stack);
 }
 
-t_stack	*get_penultimo_value(t_stack *stack)
+t_stack	*get_penultimo_nb(t_stack *stack)
 {
 	while (stack && stack->next && stack->next->next != NULL)
 		stack = stack->next;
@@ -39,7 +39,7 @@ t_stack	*new_stack(int nb)
 	new->number = nb;
 	new->index = 0;
 	new->position = -1;
-	new->target_pos = -1;
+	new->target_position = -1;
 	new->cost_a = -1;
 	new->cost_b = -1;
 	new->next = NULL;
@@ -51,12 +51,12 @@ void	stack_add_bottom(t_stack **stack, t_stack *new)
 	t_stack	*tail;
 
 	if (!new)
-		return (NULL);
+		return ;
 	if (!*stack)
 	{
 		*stack = new;
-		return (NULL);
+		return ;
 	}
-	tail = get_bottom_value(*stack);
+	tail = get_bottom_nb(*stack);
 	tail->next = new;
 }

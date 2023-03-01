@@ -13,7 +13,7 @@ t_stack	*fill_stack_nbs(int ac, char **av)
 	{
 		nb = ft_atoi(av[i]);
 		if (nb > INT_MAX || nb < INT_MIN)
-			exit_error(&stack_a, NULL);
+			freexit(&stack_a, NULL);
 		if (i == 1)
 			stack_a = new_stack((int)nb);
 		else
@@ -45,7 +45,7 @@ int	main(int ac, char **av)
 	if (ac < 2)
 		return (0);
 	if (!check_input(av))
-		exit_error(NULL, NULL);
+		freexit(NULL, NULL);
 	free_stack(&stack_a);
 	free_stack(&stack_b);
 	return (0);

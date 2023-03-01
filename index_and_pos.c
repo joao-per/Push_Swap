@@ -70,16 +70,16 @@ static int	get_target(t_stack **a, int b_idx,
 void	get_target_pos(t_stack **a, t_stack **b)
 {
 	t_stack	*temp_b;
-	int		target_pos;
+	int		position;
 
 	temp_b = *b;
 	get_pos(a);
 	get_pos(b);
-	target_pos = 0;
+	position = 0;
 	while (temp_b)
 	{
-		target_pos = get_target(a, temp_b->index, INT_MAX, target_pos);
-		temp_b->target_pos = target_pos;
+		position = get_target(a, temp_b->index, INT_MAX, position);
+		temp_b->target_position = position;
 		temp_b = temp_b->next;
 	}
 }
@@ -111,28 +111,5 @@ void	set_index(t_stack *stack_a, int stack_size)
 		}
 		if (highest != NULL)
 			highest->index = stack_size;
-	}
-}
-
-void	get_cost(t_stack **stack_a, t_stack **stack_b)
-{
-	t_stack	*temp_a;
-	t_stack	*temp_b;
-	int		size_a;
-	int		size_b;
-
-	temp_a = *stack_a;
-	temp_b = *stack_b;
-	size_a = get_stack_size(temp_a);
-	size_b = get_stack_size(temp_b);
-	while (temp_b)
-	{
-		temp_b->cost_b = temp_b->position;
-		if (temp_b->position > size_b / 2)
-			temp_b->cost_b = (size_b - temp_b->position) * -1;
-		temp_b->cost_a = temp_b->target_pos;
-		if (temp_b->target_pos > size_a / 2)
-			temp_b->cost_a = (size_a - temp_b->target_pos) * -1;
-		temp_b = temp_b->next;
 	}
 }

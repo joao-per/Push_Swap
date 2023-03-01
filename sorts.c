@@ -46,11 +46,8 @@ static void	push_all_save_three(t_stack **stack_a, t_stack **stack_b)
 		else
 			do_rotate(stack_a, stack_b, "rb");
 	}
-	while (size_a - size_b > 3)
-	{
-		do_pb(stack_a, stack_b);
-		size_b++;
-	}
+	while (size_a - size_b++ > 3)
+		do_push(stack_a, stack_b, "pb");
 }
 
 /*  ---------------
@@ -80,27 +77,7 @@ static void	shift_stack(t_stack **stack_a, t_stack **stack_b)
 	}
 }
 
-void	do_cheapest_move(t_stack **stack_a, t_stack **stack_b)
-{
-	t_stack	*temp;
-	int		cheapest;
-	int		cost_a;
-	int		cost_b;
 
-	temp = *stack_b;
-	cheapest = INT_MAX;
-	while (temp)
-	{
-		if (abs_vl(temp->cost_a) + abs_vl(temp->cost_b) < abs_vl(cheapest))
-		{
-			cheapest = abs_vl(temp->cost_b) + abs_vl(temp->cost_a);
-			cost_a = temp->cost_a;
-			cost_b = temp->cost_b;
-		}
-		temp = temp->next;
-	}
-	do_move(stack_a, stack_b, cost_a, cost_b);
-}
 
 void	sort(t_stack **stack_a, t_stack **stack_b)
 {

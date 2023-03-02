@@ -59,7 +59,7 @@ void	do_swap(t_stack **stack_a, t_stack **stack_b, char *op)
 		swap(*stack_a);
 		ft_putstr("sa\n");
 	}
-	if (ft_strcmp(op, "pb") == 0)
+	if (ft_strcmp(op, "sb") == 0)
 	{
 		swap(*stack_b);
 		ft_putstr("sb\n");

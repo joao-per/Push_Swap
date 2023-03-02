@@ -12,11 +12,6 @@
 
 #include "push_swap.h"
 
-int	is_digit(char c)
-{
-	return (c >= '0' && c <= '9');
-}
-
 int	neg_to_pos(int nb)
 {
 	if (nb < 0)

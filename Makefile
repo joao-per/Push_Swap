@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: joao-per <joao-per@student.42lisboa.com>   +#+  +:+       +#+         #
+#    By: joao-per <joao-per@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 13:39:37 by joao-per          #+#    #+#              #
-#    Updated: 2023/03/01 17:07:30 by joao-per         ###   ########.fr        #
+#    Updated: 2023/03/02 18:00:40 by joao-per         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ test3:				$(NAME)
 					@./push_swap $(ARG) | wc -l
 
 test5:				$(NAME)	
-					$(eval ARG = $(shell shuf -i 0-5000 -n 5))
+					$(eval ARG = $(shell shuf -i 0-5000 -n 20))
 					./push_swap $(ARG) | ./checker_linux $(ARG)
 					@echo -n "Moves: "
 					@./push_swap $(ARG) | wc -l

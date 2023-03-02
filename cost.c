@@ -61,9 +61,9 @@ void	align_stack(t_stack **a, t_stack **b, int cost_a, int cost_b)
 {
 	if (cost_a > 0 && cost_b > 0 || cost_a < 0 && cost_b < 0)
 	{
-		while (cost_a-- > 0 && cost_b-- > 0)
+		while (cost_a > 0 && cost_b > 0 && cost_a-- && cost_b--)
 			do_rotate(a, b, "rr");
-		while (cost_a++ < 0 && cost_b++ < 0)
+		while (cost_a < 0 && cost_b < 0 && cost_a++ && cost_b++)
 			do_rrotate(a, b, "rrr");
 	}
 	while (cost_a)

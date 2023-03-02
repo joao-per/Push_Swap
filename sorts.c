@@ -56,7 +56,7 @@ static void	push_all_save_three(t_stack **stack_a, t_stack **stack_b)
 			size_b++;
 		}
 		else
-			do_rotate(stack_a, stack_b, "rb");
+			do_rotate(stack_a, stack_b, "ra");
 	}
 	while (size_a - size_b++ > 3)
 		do_push(stack_a, stack_b, "pb");

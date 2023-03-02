@@ -60,5 +60,6 @@ void		set_index(t_stack *stack_a, int stack_size);
 void		get_cost(t_stack **stack_a, t_stack **stack_b);
 int			get_minor_pos(t_stack **stack);
 void		align_stack2(t_stack **a, t_stack **b, int cost_a, int cost_b);
+void		printstack(t_stack **stack_a);
 
 #endif

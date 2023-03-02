@@ -19,7 +19,11 @@ static void	rotate(t_stack **stack)
 	t_stack	*last;
 
 	head = *stack;
-	second = (*stack)->next;
+/* 	if (head == NULL) {
+		printf("Stack is empty\n");
+		return;
+	} */
+	second = head->next;
 	last = get_bottom_nb(*stack);
 	if (*stack == NULL || (*stack)->next == NULL)
 		return ;

@@ -65,12 +65,12 @@ void	printstack(t_stack **stack_a)
 	t_stack	*head;
 
 	head = *stack_a;
+	printf("Stack A: \n");
 	while (head)
 	{
 		printf("%d\n", head->number);
 		head = head->next;
 	}
-
 }
 
 int	main(int ac, char **av)
@@ -87,7 +87,7 @@ int	main(int ac, char **av)
 	stack_b = NULL;
 	size = get_stack_size(stack_a);
 	sorts(&stack_a, &stack_b, size);
-	printstack(&stack_a);
+	//printstack(&stack_a);
 	free_stack(&stack_a);
 	free_stack(&stack_b);
 	return (0);

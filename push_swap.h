@@ -36,7 +36,6 @@ void		sort_three(t_stack **stack_a, t_stack **stack_b);
 void		sort(t_stack **stack_a, t_stack **stack_b);
 
 /*				UTILS				*/
-int			is_digit(char c);
 int			ft_atol(const char *str);
 int			neg_to_pos(int nb);
 void		free_stack(t_stack **stack);

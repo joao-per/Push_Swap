@@ -17,7 +17,7 @@
 # include <unistd.h>
 # include <limits.h>
 
-int		ft_atol(const char *str);
+long	ft_atol(const char *str);
 int		is_digit(int i);
 void	ft_putstr(char *s);
 int		ft_strcmp(char *s1, char *s2);

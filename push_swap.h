@@ -43,23 +43,21 @@ void		do_rrotate(t_stack **stack_a, t_stack **stack_b, char *op);
 void		align_stack(t_stack **a, t_stack **b, int cost_a, int cost_b);
 
 /*				SORTS				*/
-//int			check_order(t_stack *stack);
 void		sort_three(t_stack **stack_a, t_stack **stack_b);
 void		sort(t_stack **stack_a, t_stack **stack_b);
 
 /*				UTILS				*/
-int			ft_atol(const char *str);
 int			neg_to_pos(int nb);
 void		lstclear(t_stack **lst);
 void		freexit(t_stack **stack_a, t_stack **stack_b);
 
 /*				STACKS				*/
-t_stack		*fill_stack_nbs(int ac, char **av);
+t_stack		*create_list(int ac, char **av);
 int			check_order(t_stack **stack);
+t_stack		*last_node(t_stack *lst);
 
 /*				COST				*/
 t_stack		*new_stack(int nb);
-t_stack		*get_bottom_nb(t_stack *stack);
 t_stack		*before_last_node(t_stack *lst);
 void		do_cheapest_move(t_stack **stack_a, t_stack **stack_b);
 void		add_back(t_stack **lst, t_stack *new);
@@ -72,5 +70,7 @@ void		get_cost(t_stack **stack_a, t_stack **stack_b);
 int			get_minor_pos(t_stack **stack);
 void		align_stack2(t_stack **a, t_stack **b, int cost_a, int cost_b);
 void		printstack(t_stack **stack_a);
+void		rush_b(t_stack **stack_a, t_stack **stack_b);
+void		fix_order(t_stack **stack_a, t_stack **stack_b);
 
 #endif

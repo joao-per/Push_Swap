@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int	ft_atol(const char *str)
+long	ft_atol(const char *str)
 {
 	long int	result;
 	int			i;
@@ -34,7 +34,9 @@ int	ft_atol(const char *str)
 		result = (str[i] - 48) + (result * 10);
 		i++;
 	}
-	if (result > INT_MAX || result < -2147483648)
-		return (69696969);
-	return (result * negative);
+	if (negative == -1)
+		result = -result;
+	if (result > INT_MAX || result < INT_MIN)
+		return (6969696969);
+	return (result);
 }

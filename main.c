@@ -19,29 +19,25 @@
 	i = 1;
 	while (i < ac)
 	{
-		add_back(stack, new_node(ft_atoi(av[i])));
+		add_back(stack, new_node(ft_atol(av[i])));
 		i++;
 	}
 } */
 
-t_stack	*fill_stack_nbs(int ac, char **av)
+t_stack	*create_list(int ac, char **av)
 {
 	t_stack		*stack_a;
 	long int	nb;
 	int			i;
 
 	stack_a = NULL;
-	nb = 0;
 	i = 1;
-	while (i < ac)
+	while (ac > i)
 	{
 		nb = ft_atol(av[i]);
-		if (nb > INT_MAX || nb < INT_MIN)
+		if (nb > INT_MAX)
 			freexit(&stack_a, NULL);
-		if (i == 1)
-			stack_a = new_stack((int)nb);
-		else
-			add_back(&stack_a, new_stack((int)nb));
+		add_back(&stack_a, new_stack((int)nb));
 		i++;
 	}
 	return (stack_a);
@@ -65,14 +61,24 @@ int	check_order(t_stack **stack)
 static void	sorts(t_stack **stack_a, t_stack **stack_b, int size)
 {
 	set_index(*stack_a, size + 1);
-	if (!check_order(*stack_a))
+	if (!check_order(stack_a))
 	{
 		if (size == 2)
 			do_swap(stack_a, stack_b, "sa");
 		else if (size == 3)
 			sort_three(stack_a, stack_b);
 		else
-			sort(stack_a, stack_b);
+		{
+			rush_b(stack_a, stack_b);
+			while (*stack_b)
+			{
+				set_best_pos(stack_a, stack_b);
+				get_cost(stack_a, stack_b);
+				do_cheapest_move(stack_a, stack_b);
+			}
+			if (!check_order(stack_a))
+				fix_order(stack_a, stack_b);
+		}
 	}
 }
 
@@ -99,12 +105,11 @@ int	main(int ac, char **av)
 		return (0);
 	if (!check_input(av))
 		freexit(NULL, NULL);
-	stack_a = fill_stack_nbs(ac, av);
+	stack_a = create_list(ac, av);
 	stack_b = NULL;
 	size = lstsize(stack_a);
 	sorts(&stack_a, &stack_b, size);
-	free_stack(&stack_a);
-	free_stack(&stack_b);
+	lstclear(&stack_a);
+	lstclear(&stack_b);
 	return (0);
 }
-	//printstack(&stack_a);

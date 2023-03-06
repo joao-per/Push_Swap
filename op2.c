@@ -20,7 +20,7 @@ static void	rotate(t_stack **stack)
 
 	head = *stack;
 	second = head->next;
-	last = get_bottom_nb(*stack);
+	last = last_node(*stack);
 	if (*stack == NULL || (*stack)->next == NULL)
 		return ;
 	head->next = NULL;
@@ -56,7 +56,7 @@ static void	rrotate(t_stack **stack)
 
 	head = *stack;
 	before_last = before_last_node(*stack);
-	last = get_bottom_nb(*stack);
+	last = last_node(*stack);
 	if (*stack == NULL || (*stack)->next == NULL)
 		return ;
 	before_last->next = NULL;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joao-per <joao-per@student.42lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/06 10:49:57 by joao-per          #+#    #+#             */
+/*   Updated: 2023/03/06 10:49:57 by joao-per         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -54,7 +66,7 @@ void		stack_add_bottom(t_stack **stack, t_stack *new);
 int			get_stack_size(t_stack	*stack);
 
 /*			POS_AND_INDEX			*/
-void		get_target_pos(t_stack **a, t_stack **b);
+void		set_best_pos(t_stack **a, t_stack **b);
 void		set_index(t_stack *stack_a, int stack_size);
 void		get_cost(t_stack **stack_a, t_stack **stack_b);
 int			get_minor_pos(t_stack **stack);

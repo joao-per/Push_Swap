@@ -46,7 +46,8 @@ void	do_cheapest_move(t_stack **stack_a, t_stack **stack_b)
 	cheapest = INT_MAX;
 	while (temp)
 	{
-		if (neg_to_pos(temp->cost_a) + neg_to_pos(temp->cost_b) < neg_to_pos(cheapest))
+		if (neg_to_pos(temp->cost_a) + neg_to_pos(temp->cost_b)
+			< neg_to_pos(cheapest))
 		{
 			cheapest = neg_to_pos(temp->cost_b) + neg_to_pos(temp->cost_a);
 			cost_a = temp->cost_a;

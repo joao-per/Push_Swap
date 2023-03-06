@@ -12,114 +12,112 @@
 
 #include "push_swap.h"
 
-static void	get_pos(t_stack **stack)
+static void	set_position(t_stack **stack)
 {
-	t_stack	*temp;
+	t_stack	*tmp;
 	int		i;
 
-	temp = *stack;
+	tmp = *stack;
 	i = 0;
-	while (temp)
+	while (tmp)
 	{
-		temp->position = i;
-		temp = temp->next;
-		i++;
+		tmp->position = i++;
+		tmp = tmp->next;
 	}
 }
 
 int	get_minor_pos(t_stack **stack)
 {
-	t_stack	*temp;
+	t_stack	*tmp;
 	int		lowest_index;
 	int		lowest_position;
 
-	temp = *stack;
+	tmp = *stack;
 	lowest_index = INT_MAX;
-	get_pos(stack);
-	lowest_position = temp->position;
-	while (temp)
+	set_position(stack);
+	lowest_position = tmp->position;
+	while (tmp)
 	{
-		if (temp->index < lowest_index)
+		if (tmp->index < lowest_index)
 		{
-			lowest_index = temp->index;
-			lowest_position = temp->position;
+			lowest_index = tmp->index;
+			lowest_position = tmp->position;
 		}
-		temp = temp->next;
+		tmp = tmp->next;
 	}
 	return (lowest_position);
 }
 
-static int	get_target(t_stack **a, int b_idx,
-								int target_idx, int target_pos)
+static int	best_pos(t_stack **a, int b_idx,
+								int target_idx, int position)
 {
-	t_stack	*temp_a;
+	t_stack	*tmp_a;
 
-	temp_a = *a;
-	while (temp_a)
+	tmp_a = *a;
+	while (tmp_a)
 	{
-		if (temp_a->index > b_idx && temp_a->index < target_idx)
+		if (tmp_a->index > b_idx && tmp_a->index < target_idx)
 		{
-			target_idx = temp_a->index;
-			target_pos = temp_a->position;
+			target_idx = tmp_a->index;
+			position = tmp_a->position;
 		}
-		temp_a = temp_a->next;
+		tmp_a = tmp_a->next;
 	}
 	if (target_idx != INT_MAX)
-		return (target_pos);
-	temp_a = *a;
-	while (temp_a)
+		return (position);
+	tmp_a = *a;
+	while (tmp_a)
 	{
-		if (temp_a->index < target_idx)
+		if (tmp_a->index < target_idx)
 		{
-			target_idx = temp_a->index;
-			target_pos = temp_a->position;
+			target_idx = tmp_a->index;
+			position = tmp_a->position;
 		}
-		temp_a = temp_a->next;
+		tmp_a = tmp_a->next;
 	}
-	return (target_pos);
+	return (position);
 }
 
-void	get_target_pos(t_stack **a, t_stack **b)
+void	set_best_pos(t_stack **a, t_stack **b)
 {
-	t_stack	*temp_b;
+	t_stack	*tmp_b;
 	int		position;
 
-	temp_b = *b;
-	get_pos(a);
-	get_pos(b);
+	tmp_b = *b;
+	set_position(a);
+	set_position(b);
 	position = 0;
-	while (temp_b)
+	while (tmp_b)
 	{
-		position = get_target(a, temp_b->index, INT_MAX, position);
-		temp_b->target_position = position;
-		temp_b = temp_b->next;
+		position = best_pos(a, tmp_b->index, INT_MAX, position);
+		tmp_b->target_position = position;
+		tmp_b = tmp_b->next;
 	}
 }
-
 
 void	set_index(t_stack *stack_a, int stack_size)
 {
-	t_stack	*temp;
+	t_stack	*tmp;
 	t_stack	*highest;
 	int		number;
 
 	while (--stack_size > 0)
 	{
-		temp = stack_a;
+		tmp = stack_a;
 		number = INT_MIN;
 		highest = NULL;
-		while (temp)
+		while (tmp)
 		{
-			if (temp->number == INT_MIN && temp->index == 0)
-				temp->index = 1;
-			if (temp->number > number && temp->index == 0)
+			if (tmp->number == INT_MIN && tmp->index == 0)
+				tmp->index = 1;
+			if (tmp->number > number && tmp->index == 0)
 			{
-				number = temp->number;
-				highest = temp;
-				temp = stack_a;
+				number = tmp->number;
+				highest = tmp;
+				tmp = stack_a;
 			}
 			else
-				temp = temp->next;
+				tmp = tmp->next;
 		}
 		if (highest != NULL)
 			highest->index = stack_size;

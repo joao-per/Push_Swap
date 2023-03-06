@@ -87,8 +87,8 @@ int	main(int ac, char **av)
 	stack_b = NULL;
 	size = get_stack_size(stack_a);
 	sorts(&stack_a, &stack_b, size);
-	//printstack(&stack_a);
 	free_stack(&stack_a);
 	free_stack(&stack_b);
 	return (0);
 }
+	//printstack(&stack_a);

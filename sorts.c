@@ -56,8 +56,6 @@ void	sort_three(t_stack **stack_a, t_stack **stack_b)
 	return (slow_ptr->number);
 } */
 
-
-
 static void	rush_b(t_stack **stack_a, t_stack **stack_b)
 {
 	int	size_a;
@@ -119,7 +117,7 @@ void	sort(t_stack **stack_a, t_stack **stack_b)
 	sort_three(stack_a, stack_b);
 	while (*stack_b)
 	{
-		get_target_pos(stack_a, stack_b);
+		set_best_pos(stack_a, stack_b);
 		get_cost(stack_a, stack_b);
 		do_cheapest_move(stack_a, stack_b);
 	}

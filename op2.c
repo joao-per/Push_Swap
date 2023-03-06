@@ -55,7 +55,7 @@ static void	rrotate(t_stack **stack)
 	t_stack	*last;
 
 	head = *stack;
-	before_last = get_penultimo_nb(*stack);
+	before_last = before_last_node(*stack);
 	last = get_bottom_nb(*stack);
 	if (*stack == NULL || (*stack)->next == NULL)
 		return ;

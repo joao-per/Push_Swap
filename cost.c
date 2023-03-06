@@ -14,46 +14,46 @@
 
 void	get_cost(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack	*temp_a;
-	t_stack	*temp_b;
+	t_stack	*tmp_a;
+	t_stack	*tmp_b;
 	int		size_a;
 	int		size_b;
 
-	temp_a = *stack_a;
-	temp_b = *stack_b;
-	size_a = get_stack_size(temp_a);
-	size_b = get_stack_size(temp_b);
-	while (temp_b)
+	tmp_a = *stack_a;
+	tmp_b = *stack_b;
+	size_a = lstsize(tmp_a);
+	size_b = lstsize(tmp_b);
+	while (tmp_b)
 	{
-		temp_b->cost_b = temp_b->position;
-		if (temp_b->position > size_b / 2)
-			temp_b->cost_b = (size_b - temp_b->position) * -1;
-		temp_b->cost_a = temp_b->target_position;
-		if (temp_b->target_position > size_a / 2)
-			temp_b->cost_a = (size_a - temp_b->target_position) * -1;
-		temp_b = temp_b->next;
+		tmp_b->cost_b = tmp_b->position;
+		if (tmp_b->position > size_b / 2)
+			tmp_b->cost_b = (size_b - tmp_b->position) * -1;
+		tmp_b->cost_a = tmp_b->target_position;
+		if (tmp_b->target_position > size_a / 2)
+			tmp_b->cost_a = (size_a - tmp_b->target_position) * -1;
+		tmp_b = tmp_b->next;
 	}
 }
 
 void	do_cheapest_move(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack	*temp;
+	t_stack	*tmp;
 	int		cheapest;
 	int		cost_a;
 	int		cost_b;
 
-	temp = *stack_b;
+	tmp = *stack_b;
 	cheapest = INT_MAX;
-	while (temp)
+	while (tmp)
 	{
-		if (neg_to_pos(temp->cost_a) + neg_to_pos(temp->cost_b)
+		if (neg_to_pos(tmp->cost_a) + neg_to_pos(tmp->cost_b)
 			< neg_to_pos(cheapest))
 		{
-			cheapest = neg_to_pos(temp->cost_b) + neg_to_pos(temp->cost_a);
-			cost_a = temp->cost_a;
-			cost_b = temp->cost_b;
+			cheapest = neg_to_pos(tmp->cost_b) + neg_to_pos(tmp->cost_a);
+			cost_a = tmp->cost_a;
+			cost_b = tmp->cost_b;
 		}
-		temp = temp->next;
+		tmp = tmp->next;
 	}
 	align_stack(stack_a, stack_b, cost_a, cost_b);
 }

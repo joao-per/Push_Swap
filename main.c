@@ -12,6 +12,18 @@
 
 #include "push_swap.h"
 
+/* void	create_list(int ac, char **av, t_stack **stack)
+{
+	int	i;
+
+	i = 1;
+	while (i < ac)
+	{
+		add_back(stack, new_node(ft_atoi(av[i])));
+		i++;
+	}
+} */
+
 t_stack	*fill_stack_nbs(int ac, char **av)
 {
 	t_stack		*stack_a;
@@ -29,19 +41,23 @@ t_stack	*fill_stack_nbs(int ac, char **av)
 		if (i == 1)
 			stack_a = new_stack((int)nb);
 		else
-			stack_add_bottom(&stack_a, new_stack((int)nb));
+			add_back(&stack_a, new_stack((int)nb));
 		i++;
 	}
 	return (stack_a);
 }
 
-int	sort_checker(t_stack *stack)
+int	check_order(t_stack **stack)
 {
-	while (stack->next != NULL)
+	t_stack	*temp;
+
+	temp = *stack;
+	while (temp->next)
 	{
-		if (stack->number > stack->next->number)
+		if (temp->number < temp->next->number)
+			temp = temp->next;
+		else
 			return (0);
-		stack = stack->next;
 	}
 	return (1);
 }
@@ -49,7 +65,7 @@ int	sort_checker(t_stack *stack)
 static void	sorts(t_stack **stack_a, t_stack **stack_b, int size)
 {
 	set_index(*stack_a, size + 1);
-	if (!sort_checker(*stack_a))
+	if (!check_order(*stack_a))
 	{
 		if (size == 2)
 			do_swap(stack_a, stack_b, "sa");
@@ -85,7 +101,7 @@ int	main(int ac, char **av)
 		freexit(NULL, NULL);
 	stack_a = fill_stack_nbs(ac, av);
 	stack_b = NULL;
-	size = get_stack_size(stack_a);
+	size = lstsize(stack_a);
 	sorts(&stack_a, &stack_b, size);
 	free_stack(&stack_a);
 	free_stack(&stack_b);

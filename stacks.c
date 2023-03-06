@@ -16,59 +16,57 @@ t_stack	*new_stack(int nb)
 {
 	t_stack	*new;
 
-	new = malloc(sizeof * new);
+	new = malloc(sizeof(t_stack));
 	if (!new)
-		return (NULL);
+		return (0);
 	new->number = nb;
-	new->index = 0;
 	new->position = -1;
 	new->target_position = -1;
 	new->cost_a = -1;
 	new->cost_b = -1;
+	new->index = 0;
 	new->next = NULL;
 	return (new);
 }
 
-t_stack	*get_bottom_nb(t_stack *stack)
+t_stack	*last_node(t_stack *lst)
 {
-	while (stack && stack->next != NULL)
-		stack = stack->next;
-	return (stack);
+	if (!lst)
+		return (0);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }
 
-t_stack	*get_penultimo_nb(t_stack *stack)
+t_stack	*before_last_node(t_stack *lst)
 {
-	while (stack && stack->next && stack->next->next != NULL)
-		stack = stack->next;
-	return (stack);
+	while (lst && lst->next && lst->next->next != NULL)
+		lst = lst->next;
+	return (lst);
 }
 
-int	get_stack_size(t_stack	*stack)
+int	lstsize(t_stack *lst)
 {
 	int	size;
 
 	size = 0;
-	if (!stack)
-		return (0);
-	while (stack)
+	while (lst)
 	{
-		stack = stack->next;
+		lst = lst->next;
 		size++;
 	}
 	return (size);
 }
 
-void	stack_add_bottom(t_stack **stack, t_stack *new)
+void	add_back(t_stack **lst, t_stack *new)
 {
-	t_stack	*tail;
+	t_stack	*last;
 
-	if (!new)
-		return ;
-	if (!*stack)
+	if (!*lst)
 	{
-		*stack = new;
+		*lst = new;
 		return ;
 	}
-	tail = get_bottom_nb(*stack);
-	tail->next = new;
+	last = last_node(*lst);
+	last->next = new;
 }

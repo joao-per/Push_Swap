@@ -62,7 +62,7 @@ static void	rush_b(t_stack **stack_a, t_stack **stack_b)
 	int	size_b;
 	int	i;
 
-	size_a = get_stack_size(*stack_a);
+	size_a = lstsize(*stack_a);
 	size_b = 0;
 	i = -1;
 	while (size_a > 6 && ++i < size_a && size_b < size_a / 2)
@@ -97,7 +97,7 @@ static void	fix_order(t_stack **stack_a, t_stack **stack_b)
 	int	lowest_pos;
 	int	size;
 
-	size = get_stack_size(*stack_a);
+	size = lstsize(*stack_a);
 	lowest_pos = get_minor_pos(stack_a);
 	if (lowest_pos < size / 2)
 	{
@@ -121,7 +121,7 @@ void	sort(t_stack **stack_a, t_stack **stack_b)
 		get_cost(stack_a, stack_b);
 		do_cheapest_move(stack_a, stack_b);
 	}
-	if (!sort_checker(*stack_a))
+	if (!check_order(*stack_a))
 		fix_order(stack_a, stack_b);
 }
 
@@ -131,7 +131,7 @@ void	sort(t_stack **stack_a, t_stack **stack_b)
 	int	size_b;
 	int	i;
 
-	size_a = get_stack_size(*stack_a);
+	size_a = lstsize(*stack_a);
 	size_b = 0;
 	i = -1;
 	while (size_a > 6 && ++i < size_a && size_b < size_a / 2)

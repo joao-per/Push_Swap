@@ -19,27 +19,27 @@ int	neg_to_pos(int nb)
 	return (nb);
 }
 
-void	free_stack(t_stack **stack)
+void	lstclear(t_stack **lst)
 {
 	t_stack	*temp;
 
-	if (!stack || !(*stack))
+	if (!lst || !*lst)
 		return ;
-	while (*stack)
+	while (*lst)
 	{
-		temp = (*stack)->next;
-		free(*stack);
-		*stack = temp;
+		temp = (*lst)->next;
+		free (*lst);
+		*lst = temp;
 	}
-	*stack = NULL;
+	lst = NULL;
 }
 
 void	freexit(t_stack **stack_a, t_stack **stack_b)
 {
 	if (stack_a == NULL || *stack_a != NULL)
-		free_stack(stack_a);
+		lstclear(stack_a);
 	if (stack_b == NULL || *stack_b != NULL)
-		free_stack(stack_b);
+		lstclear(stack_b);
 	ft_putstr("Error\n");
 	exit (1);
 }

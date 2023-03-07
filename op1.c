@@ -14,14 +14,14 @@
 
 void	push(t_stack **src, t_stack **dest)
 {
-	t_stack	*temp;
+	t_stack	*tmp;
 
-	temp = *src;
+	tmp = *src;
 	if (*src == NULL)
 		return ;
 	*src = (*src)->next;
-	temp->next = *dest;
-	*dest = temp;
+	tmp->next = *dest;
+	*dest = tmp;
 }
 
 void	do_push(t_stack **stack_a, t_stack **stack_b, char *op)
@@ -40,16 +40,16 @@ void	do_push(t_stack **stack_a, t_stack **stack_b, char *op)
 
 void	swap(t_stack *stack)
 {
-	int	temp;
+	int	tmp;
 
 	if (stack == NULL || stack->next == NULL)
 		return ;
-	temp = stack->number;
+	tmp = stack->number;
 	stack->number = stack->next->number;
-	stack->next->number = temp;
-	temp = stack->index;
+	stack->next->number = tmp;
+	tmp = stack->index;
 	stack->index = stack->next->index;
-	stack->next->index = temp;
+	stack->next->index = tmp;
 }
 
 void	do_swap(t_stack **stack_a, t_stack **stack_b, char *op)

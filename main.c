@@ -12,52 +12,6 @@
 
 #include "push_swap.h"
 
-/* void	create_list(int ac, char **av, t_stack **stack)
-{
-	int	i;
-
-	i = 1;
-	while (i < ac)
-	{
-		add_back(stack, new_node(ft_atol(av[i])));
-		i++;
-	}
-} */
-
-t_stack	*create_list(int ac, char **av)
-{
-	t_stack		*stack_a;
-	long int	nb;
-	int			i;
-
-	stack_a = NULL;
-	i = 1;
-	while (ac > i)
-	{
-		nb = ft_atol(av[i]);
-		if (nb > INT_MAX)
-			freexit(&stack_a, NULL);
-		add_back(&stack_a, new_stack((int)nb));
-		i++;
-	}
-	return (stack_a);
-}
-
-int	check_order(t_stack **stack)
-{
-	t_stack	*temp;
-
-	temp = *stack;
-	while (temp->next)
-	{
-		if (temp->number < temp->next->number)
-			temp = temp->next;
-		else
-			return (0);
-	}
-	return (1);
-}
-
 static void	sorts(t_stack **stack_a, t_stack **stack_b, int size)
 {
 	set_index(*stack_a, size + 1);
@@ -82,19 +36,6 @@ static void	sorts(t_stack **stack_a, t_stack **stack_b, int size)
 	}
 }
 
-void	printstack(t_stack **stack_a)
-{
-	t_stack	*head;
-
-	head = *stack_a;
-	printf("Stack A: \n");
-	while (head)
-	{
-		printf("%d\n", head->number);
-		head = head->next;
-	}
-}
-
 int	main(int ac, char **av)
 {
 	t_stack	*stack_a;
@@ -103,7 +44,7 @@ int	main(int ac, char **av)
 
 	if (ac < 2)
 		return (0);
-	if (!check_input(av))
+	if (!check_input(ac, av))
 		freexit(NULL, NULL);
 	stack_a = create_list(ac, av);
 	stack_b = NULL;

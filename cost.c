@@ -60,7 +60,7 @@ void	do_cheapest_move(t_stack **stack_a, t_stack **stack_b)
 
 void	align_stack(t_stack **a, t_stack **b, int cost_a, int cost_b)
 {
-	if (cost_a > 0 && cost_b > 0 || cost_a < 0 && cost_b < 0)
+	if ((cost_a > 0 && cost_b > 0) || (cost_a < 0 && cost_b < 0))
 	{
 		while (cost_a > 0 && cost_b > 0 && cost_a-- && cost_b--)
 			do_rotate(a, b, "rr");

@@ -43,3 +43,35 @@ void	freexit(t_stack **stack_a, t_stack **stack_b)
 	ft_putstr("Error\n");
 	exit (1);
 }
+
+t_stack	*create_list(int ac, char **av)
+{
+	t_stack		*stack_a;
+	long int	nb;
+	int			i;
+
+	stack_a = NULL;
+	i = 1;
+	while (ac > i)
+	{
+		nb = ft_atol(av[i]);
+		add_back(&stack_a, new_stack((int)nb));
+		i++;
+	}
+	return (stack_a);
+}
+
+int	check_order(t_stack **stack)
+{
+	t_stack	*temp;
+
+	temp = *stack;
+	while (temp->next)
+	{
+		if (temp->number < temp->next->number)
+			temp = temp->next;
+		else
+			return (0);
+	}
+	return (1);
+}

@@ -12,17 +12,26 @@
 
 #include "push_swap.h"
 
-int	check_ifnb(char *nb)
+int	check_ifnb(int ac, char **nb)
 {
 	int	i;
+	int	j;
 
-	i = 0;
-	if (nb[i + 1] != '\0' && (nb[i] == '+' || nb[i] == '-'))
+	i = 1;
+	while (i < ac)
+	{
+		j = 0;
+		while (nb[i][j])
+		{
+			if (j == 0 && (nb[i][j] == '-' || nb[i][j] == '+'))
+				j++;
+			if ((nb[i][j] >= '0' && nb[i][j] <= '9'))
+				j++;
+			else
+				return (0);
+		}
 		i++;
-	while (nb[i] >= '0' && nb[i] <= '9' && nb[i])
-		i++;
-	if (nb[i] != '\0' && !is_digit(nb[i]))
-		return (0);
+	}
 	return (1);
 }
 
@@ -31,52 +40,39 @@ int	check_dup(char **nb)
 	int	i;
 	int	j;
 
-	i = 1;
-	while (nb[i])
+	i = 0;
+	while (nb[++i])
 	{
-		j = i + 1;
-		while (nb[j])
+		j = i + 1 - 1;
+		while (nb[++j])
 		{
 			if (ft_atol(nb[i]) == ft_atol(nb[j]))
 				return (1);
-			j++;
 		}
-		i++;
 	}
 	return (0);
 }
 
-int	check_zero(char *av)
+int	check_limits(int ac, char **nb)
 {
 	int	i;
 
 	i = 0;
-	if (is_sign(av[i]))
-		i++;
-	while (av[i] && av[i] == '0')
-		i++;
-	if (av[i] != '\0')
-		return (0);
-	return (1);
+	while (++i < ac)
+	{
+		if (ft_atol(nb[i]) == 6969696969)
+			return (1);
+	}
+	return (0);
 }
 
-int	check_input(char **av)
+int	check_input(int ac, char **nb)
 {
-	int	i;
-	int	only_zero;
-
-	only_zero = 0;
-	i = 1;
-	while (av[i])
-	{
-		if (!check_ifnb(av[i]))
-			return (0);
-		only_zero += check_zero(av[i]);
-		i++;
-	}
-	if (only_zero > 1)
+	if (!check_ifnb(ac, nb))
 		return (0);
-	if (check_dup(av))
+	if (check_limits(ac, nb))
+		return (0);
+	if (check_dup(nb))
 		return (0);
 	return (1);
 }
